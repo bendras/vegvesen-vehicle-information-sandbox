@@ -156,6 +156,7 @@ Sandbox.define('/vehicle/{registrationNumber}', 'GET', function(req, res){
     var registrationNumber = req.params.registrationNumber;
     
     if (state.requestId === 5) {
+        state.requestId = 1;
         res.send(500, 'Service ins not available, try again later.');
         return;
     }
