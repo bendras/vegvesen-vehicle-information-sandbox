@@ -151,8 +151,16 @@ Sandbox.define('/vehicle', 'GET', function(req, res){
 // Using named route parameters to simulate getting a specific user
 Sandbox.define('/vehicle/{registrationNumber}', 'GET', function(req, res){
     state.registrations = state.registrations || initialListOfVehicleRegistrations;
+    state.requestId = state.requestId || 1;
     
     var registrationNumber = req.params.registrationNumber;
+    
+    if (state.requestId === 5) {
+        res.send(500, 'Service ins not available, try again later.');
+        return;
+    }
+    
+    state.requestId = state.requestId + 1;
     
     console.log("Getting user " + registrationNumber + " details");
     
